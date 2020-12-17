@@ -13,6 +13,8 @@
  * Text Domain: git-status
  * Domain Path: /languages
  *
+ * @package git-status
+ *
  * Git Status is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
@@ -26,3 +28,4 @@
  * You should have received a copy of the GNU General Public License
  * along with Git Status. If not, see https://wordpress.org/plugins/git-status/.
  */
+

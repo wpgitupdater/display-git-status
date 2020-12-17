@@ -47,9 +47,11 @@ module.exports = function( grunt ) {
 
 	grunt.loadNpmTasks( 'grunt-wp-i18n' );
 	grunt.loadNpmTasks( 'grunt-wp-readme-to-markdown' );
-	grunt.registerTask( 'default', [ 'i18n','readme' ] );
+	grunt.loadNpmTasks('grunt-phpcs');
+	grunt.registerTask( 'default', [ 'i18n', 'readme', 'phpcs' ] );
 	grunt.registerTask( 'i18n', ['addtextdomain', 'makepot'] );
 	grunt.registerTask( 'readme', ['wp_readme_to_markdown'] );
+	grunt.registerTask( 'phpcs', ['phpcs'] );
 
 	grunt.util.linefeed = '\n';
 

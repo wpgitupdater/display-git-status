@@ -443,6 +443,11 @@ grunt-legacy-util@~0.2.0:
     underscore.string "~2.2.1"
     which "~1.0.5"
 
+grunt-phpcs@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/grunt-phpcs/-/grunt-phpcs-0.4.0.tgz#a08d625fc64465e453b2bd93f810b2a81e94bdaa"
+  integrity sha1-oI1iX8ZEZeRTsr2T+BCyqB6Uvao=
+
 grunt-wp-i18n@~0.5.0:
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/grunt-wp-i18n/-/grunt-wp-i18n-0.5.4.tgz#8729e5ad4f4b231269721f3171654d2c62955492"
