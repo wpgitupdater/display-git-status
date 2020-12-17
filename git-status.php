@@ -29,3 +29,45 @@
  * along with Git Status. If not, see https://wordpress.org/plugins/git-status/.
  */
 
+// This plugin only operates in the admin area, there is no need to continue otherwise.
+if ( ! is_admin() ) {
+	return;
+}
+
+/**
+ * Returns the current branch name for a given location.
+ *
+ * @return string The current branch name
+ */
+function git_status_get_branch_name() {
+	return trim( shell_exec( 'cd ' . __DIR__ . ' && git rev-parse --abbrev-ref HEAD' ) );
+}
+
+add_action( 'admin_bar_menu', 'git_status_add_branch_link', 100 );
+/**
+ * Adds a link with the current branch to the admin bar
+ *
+ * @param WP_Admin_Bar $admin_bar WordPress admin bar instance.
+ */
+function git_status_add_branch_link( WP_Admin_Bar $admin_bar ) {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	$branch = git_status_get_branch_name();
+	$admin_bar->add_menu(
+		array(
+			'id'    => 'git-status',
+			'parent' => null,
+			'group'  => null,
+			'title' => '<img src="' . plugins_url( 'assets/git.svg', __FILE__ ) . '" alt="' . __( 'Git Icon', 'git-status' ) . '" style="height: 22px;width: 22px;" class="ab-icon" />' . $branch,
+			'href'  => admin_url( 'admin.php?page=git-status' ),
+			'meta' => array(
+				'title' => sprintf(
+					/* translators: Asserting the current git branch */
+					__( 'You are currently on the %s branch', 'git-status' ),
+					$branch
+				),
+			),
+		)
+	);
+}
