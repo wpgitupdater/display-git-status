@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Git Status 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/git-status\n"
-"POT-Creation-Date: 2020-12-18 13:12:52+00:00\n"
+"POT-Creation-Date: 2020-12-18 13:23:51+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,17 +24,17 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
-#: git-status.php:141
+#: git-status.php:165
 #. translators: Asserting the current git branch
 msgid "You are currently on the %s branch"
 msgstr ""
 
-#: git-status.php:149
+#: git-status.php:173
 #. translators: Asserting the current git branch
 msgid "You are currently on the %s branch, but there are uncommitted changes!"
 msgstr ""
 
-#: git-status.php:159 git-status.php:224
+#: git-status.php:183 git-status.php:251
 msgid "Git Icon"
 msgstr ""
 
@@ -42,43 +42,49 @@ msgstr ""
 msgid "Git Status"
 msgstr ""
 
-#: git-status.php:182
+#: git-status.php:206
+msgid ""
+"The function shell_exec is unavailable. The plugin cannot function "
+"correctly without it!"
+msgstr ""
+
+#: git-status.php:209
 msgid ""
 "The saved location is not a git repository! The git status menu item will "
 "be hidden from view."
 msgstr ""
 
-#: git-status.php:233
+#: git-status.php:260
 msgid "Save Settings"
 msgstr ""
 
-#: git-status.php:263
+#: git-status.php:290
 #. translators: Author credit
 msgid "Git status is brought to you by "
 msgstr ""
 
-#: git-status.php:267
+#: git-status.php:294
 #. translators: Author credit tagline
 msgid "Automated Source Controlled WordPress Updates."
 msgstr ""
 
-#: git-status.php:300
+#: git-status.php:327
 msgid "Git Settings"
 msgstr ""
 
-#: git-status.php:301
+#: git-status.php:328
 msgid "Git Repository Location"
 msgstr ""
 
-#: git-status.php:304
+#: git-status.php:331
 msgid "Repository Status"
 msgstr ""
 
-#: git-status.php:305
+#: git-status.php:332
 msgid "Last Commit"
 msgstr ""
 
-#: git-status.php:316
+#: git-status.php:343
 msgid "Settings Saved"
 msgstr ""
 

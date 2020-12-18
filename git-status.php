@@ -45,6 +45,18 @@ function get_status_install_hook() {
 }
 
 /**
+ * Determine if the `shell_exec` function is available.
+ *
+ * @return bool is the function available
+ */
+function git_status_is_shell_exec_available() {
+	if ( in_array( strtolower( ini_get( 'safe_mode' ) ), array( 'on', '1' ), true ) || ( ! function_exists( 'exec' ) ) ) {
+		return false;
+	}
+	return stripos( ini_get( 'disable_functions' ), 'shell_exec' ) === false;
+}
+
+/**
  * Returns the location of the git repository, defaulting to `wp-content` if not set.
  *
  * @return string The location of the git repository
@@ -63,6 +75,9 @@ function git_status_get_repository_location() {
  * @return string The current branch name
  */
 function git_status_get_branch_name() {
+	if ( ! git_status_is_shell_exec_available() ) {
+		return '';
+	}
 	return trim( shell_exec( 'cd ' . git_status_get_repository_location() . ' && git rev-parse --abbrev-ref HEAD' ) );
 }
 
@@ -72,6 +87,9 @@ function git_status_get_branch_name() {
  * @return bool true when no untracked changes, false otherwise.
  */
 function git_status_is_up_to_date() {
+	if ( ! git_status_is_shell_exec_available() ) {
+		return true;
+	}
 	$status = trim( shell_exec( 'cd ' . git_status_get_repository_location() . ' && git status --porcelain=v1' ) );
 	if ( '' === $status ) {
 		return true;
@@ -86,6 +104,9 @@ function git_status_is_up_to_date() {
  * @return string result of the git status call.
  */
 function git_status_get_status() {
+	if ( ! git_status_is_shell_exec_available() ) {
+		return '';
+	}
 	return trim( shell_exec( 'cd ' . git_status_get_repository_location() . ' && git status' ) );
 }
 
@@ -95,6 +116,9 @@ function git_status_get_status() {
  * @return string result of `git show --name-status`
  */
 function git_status_get_last_commit() {
+	if ( ! git_status_is_shell_exec_available() ) {
+		return '';
+	}
 	return trim( shell_exec( 'cd ' . git_status_get_repository_location() . ' && git show --name-status' ) );
 }
 
@@ -178,6 +202,9 @@ function git_status_add_pages() {
  * Outputs the Git Status page content.
  */
 function git_status_page() {
+	if ( ! git_status_is_shell_exec_available() ) {
+		add_settings_error( 'git_status_options', 'git_status_setting_git_directory', __( 'The function shell_exec is unavailable. The plugin cannot function correctly without it!', 'git-status' ), 'error' );
+	}
 	if ( git_status_get_branch_name() === '' ) {
 		add_settings_error( 'git_status_options', 'git_status_setting_git_directory', __( 'The saved location is not a git repository! The git status menu item will be hidden from view.', 'git-status' ), 'error' );
 	}
