@@ -203,7 +203,7 @@ function git_status_add_branch_link( WP_Admin_Bar $admin_bar ) {
 	}
 
 	if ( git_status_is_up_to_date() ) {
-		$img = plugins_url( 'assets/git.svg', __FILE__ );
+		$img = plugins_url( 'img/git.svg', __FILE__ );
 		$title = sprintf(
 			/* translators: Asserting the current git branch */
 			__( 'You are currently on the %s branch', 'git-status' ),
@@ -211,7 +211,7 @@ function git_status_add_branch_link( WP_Admin_Bar $admin_bar ) {
 		);
 		$class_names = 'git-status-menu git-status-up-to-date';
 	} else {
-		$img = plugins_url( 'assets/git-white.svg', __FILE__ );
+		$img = plugins_url( 'img/git-white.svg', __FILE__ );
 		$title = sprintf(
 			/* translators: Asserting the current git branch */
 			__( 'You are currently on the %s branch, but there are uncommitted changes!', 'git-status' ),
@@ -293,7 +293,7 @@ function git_status_page() {
 			}
 		</style>
 		<h1 class="page-title">
-			<img src="<?php echo esc_attr( plugins_url( 'assets/git.svg', __FILE__ ) ); ?>" alt="<?php esc_attr_e( 'Git Icon', 'git-status' ); ?>" />
+			<img src="<?php echo esc_attr( plugins_url( 'img/git.svg', __FILE__ ) ); ?>" alt="<?php esc_attr_e( 'Git Icon', 'git-status' ); ?>" />
 			<?php esc_attr_e( 'Git Status', 'git-status' ); ?>
 		</h1>
 		<form action="options.php" method="post">
