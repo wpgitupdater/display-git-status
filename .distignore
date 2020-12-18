@@ -19,6 +19,7 @@ bin
 composer.json
 composer.lock
 dependencies.yml
+docker-compose.yml
 Gruntfile.js
 package.json
 package-lock.json
