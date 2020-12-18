@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Git Status 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/git-status\n"
-"POT-Creation-Date: 2020-12-18 00:02:54+00:00\n"
+"POT-Creation-Date: 2020-12-18 11:17:31+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,22 +24,44 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
-#: git-status.php:95
+#: git-status.php:123
 #. translators: Asserting the current git branch
 msgid "You are currently on the %s branch"
 msgstr ""
 
-#: git-status.php:103
+#: git-status.php:131
 #. translators: Asserting the current git branch
 msgid "You are currently on the %s branch, but there are uncommitted changes!"
 msgstr ""
 
-#: git-status.php:113
+#: git-status.php:141 git-status.php:176
 msgid "Git Icon"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
 msgid "Git Status"
+msgstr ""
+
+#: git-status.php:164
+msgid ""
+"The saved location is not a git repository! The git status menu item will "
+"be hidden from view."
+msgstr ""
+
+#: git-status.php:185
+msgid "Save Settings"
+msgstr ""
+
+#: git-status.php:204
+msgid "Git Settings"
+msgstr ""
+
+#: git-status.php:205
+msgid "Git Repository Location"
+msgstr ""
+
+#: git-status.php:216
+msgid "Settings Saved"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
