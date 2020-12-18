@@ -80,6 +80,24 @@ function git_status_is_up_to_date() {
 	return false;
 }
 
+/**
+ * Returns the content of the git status call
+ *
+ * @return string result of the git status call.
+ */
+function git_status_get_status() {
+	return trim( shell_exec( 'cd ' . git_status_get_repository_location() . ' && git status' ) );
+}
+
+/**
+ * Returns last commit information
+ *
+ * @return string result of `git show --name-status`
+ */
+function git_status_get_last_commit() {
+	return trim( shell_exec( 'cd ' . git_status_get_repository_location() . ' && git show --name-status' ) );
+}
+
 add_action( 'admin_head', 'git_status_admin_css' );
 /**
  * Add plugins admin css.
@@ -174,6 +192,9 @@ function git_status_page() {
 			.button[data-repository-directory] {
 				margin-left: 6px;
 			}
+			#submit {
+				margin-bottom: 20px;
+			}
 			.author-credit {
 				display: flex;
 				flex-wrap: wrap;
@@ -207,9 +228,12 @@ function git_status_page() {
 			<?php
 			settings_errors( 'git_status_options' );
 			settings_fields( 'git_status_options' );
-			do_settings_sections( 'git_status' );
+			do_settings_sections( 'git_status_settings' );
 			?>
-			<input name="submit" class="button button-primary" type="submit" value="<?php esc_attr_e( 'Save Settings', 'git-status' ); ?>" />
+			<input id="submit" name="submit" class="button button-primary" type="submit" value="<?php esc_attr_e( 'Save Settings', 'git-status' ); ?>" />
+			<?php
+			do_settings_sections( 'git_status_status' );
+			?>
 		</form>
 		<div class="author-credit">
 			<?php
@@ -273,8 +297,12 @@ function git_status_register_settings() {
 			'sanitize_callback' => 'git_status_sanitize_options',
 		)
 	);
-	add_settings_section( 'git_settings', __( 'Git Settings', 'git-status' ), 'git_status_git_section_text', 'git_status' );
-	add_settings_field( 'git_status_setting_git_directory', __( 'Git Repository Location', 'git-status' ), 'git_status_setting_git_directory', 'git_status', 'git_settings', array( 'label_for' => 'git_status_setting_git_directory' ) );
+	add_settings_section( 'git_settings', __( 'Git Settings', 'git-status' ), 'git_status_git_settings_text', 'git_status_settings' );
+	add_settings_field( 'git_status_setting_git_directory', __( 'Git Repository Location', 'git-status' ), 'git_status_setting_git_directory', 'git_status_settings', 'git_settings', array( 'label_for' => 'git_status_setting_git_directory' ) );
+
+	add_settings_section( 'git_status', __( 'Git Status', 'git-status' ), 'git_status_git_status_text', 'git_status_status' );
+	add_settings_field( 'git_status_setting_git_status', __( 'Repository Status', 'git-status' ), 'git_status_setting_git_status', 'git_status_status', 'git_status', array( 'label_for' => 'git_status_setting_git_status' ) );
+	add_settings_field( 'git_status_setting_git_commit', __( 'Last Commit', 'git-status' ), 'git_status_setting_git_commit', 'git_status_status', 'git_status', array( 'label_for' => 'git_status_setting_git_commit' ) );
 }
 
 /**
@@ -292,7 +320,7 @@ function git_status_sanitize_options( $options ) {
 /**
  * Introduction text for the git settings section.
  */
-function git_status_git_section_text() { }
+function git_status_git_settings_text() { }
 
 /**
  * Output our git directory setting input.
@@ -303,4 +331,23 @@ function git_status_setting_git_directory() {
 	echo '<a href="#" class="button" data-repository-directory="' . esc_attr( rtrim( WP_CONTENT_DIR, '/' ) ) . '">' . esc_attr( 'Set to wp-content', 'git-status' ) . '</a>';
 	echo '<a href="#" class="button" data-repository-directory="' . esc_attr( rtrim( ABSPATH, '/' ) ) . '">' . esc_attr( 'Set to root', 'git-status' ) . '</a>';
 	echo '<p class="description">' . esc_attr( 'Enter the full path to your sites git repository.', 'git-status' ) . '</p>';
+}
+
+/**
+ * Introduction text for the git status section.
+ */
+function git_status_git_status_text() { }
+
+/**
+ * Output our git status setting input.
+ */
+function git_status_setting_git_status() {
+	echo '<textarea id="git_status_setting_git_status" class="large-text code" rows="10" cols="50" disabled readonly>' . esc_attr( git_status_get_status() ) . '</textarea>';
+}
+
+/**
+ * Output our git commit setting input.
+ */
+function git_status_setting_git_commit() {
+	echo '<textarea id="git_status_setting_git_commit" class="large-text code" rows="10" cols="50" disabled readonly>' . esc_attr( git_status_get_last_commit() ) . '</textarea>';
 }
