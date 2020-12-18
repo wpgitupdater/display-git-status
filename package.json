@@ -17,6 +17,7 @@
   },
   "scripts": {
     "start": "grunt default",
+    "build": "yarn start",
     "readme": "grunt readme",
     "i18n": "grunt i18n",
     "phpcs": "grunt phpcs"
