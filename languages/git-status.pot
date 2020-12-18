@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Git Status 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/git-status\n"
-"POT-Creation-Date: 2020-12-18 13:23:51+00:00\n"
+"POT-Creation-Date: 2020-12-18 15:33:57+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,17 +24,17 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
-#: git-status.php:165
+#: git-status.php:195
 #. translators: Asserting the current git branch
 msgid "You are currently on the %s branch"
 msgstr ""
 
-#: git-status.php:173
+#: git-status.php:203
 #. translators: Asserting the current git branch
 msgid "You are currently on the %s branch, but there are uncommitted changes!"
 msgstr ""
 
-#: git-status.php:183 git-status.php:251
+#: git-status.php:213 git-status.php:282
 msgid "Git Icon"
 msgstr ""
 
@@ -42,64 +42,175 @@ msgstr ""
 msgid "Git Status"
 msgstr ""
 
-#: git-status.php:206
+#: git-status.php:237
 msgid ""
 "The function shell_exec is unavailable. The plugin cannot function "
 "correctly without it!"
 msgstr ""
 
-#: git-status.php:209
+#: git-status.php:240
 msgid ""
 "The saved location is not a git repository! The git status menu item will "
 "be hidden from view."
 msgstr ""
 
-#: git-status.php:260
+#: git-status.php:291
 msgid "Save Settings"
 msgstr ""
 
-#: git-status.php:290
+#: git-status.php:302
 #. translators: Author credit
 msgid "Git status is brought to you by "
 msgstr ""
 
-#: git-status.php:294
+#: git-status.php:306
 #. translators: Author credit tagline
 msgid "Automated Source Controlled WordPress Updates."
 msgstr ""
 
-#: git-status.php:327
+#: git-status.php:339
 msgid "Git Settings"
 msgstr ""
 
-#: git-status.php:328
+#: git-status.php:340
 msgid "Git Repository Location"
 msgstr ""
 
-#: git-status.php:331
+#: git-status.php:343
 msgid "Repository Status"
 msgstr ""
 
-#: git-status.php:332
+#: git-status.php:344
 msgid "Last Commit"
 msgstr ""
 
-#: git-status.php:343
+#: git-status.php:356
 msgid "Settings Saved"
 msgstr ""
 
+#: git-status.php:404
+msgid "Introduction"
+msgstr ""
+
+#: git-status.php:405
+msgid ""
+"Git Status is a pretty simple plugin, all it needs is access to the "
+"shell_exec function and to be pointed at a git repository."
+msgstr ""
+
+#: git-status.php:406
+msgid ""
+"The plugin will not perform any state altering operations, it will access "
+"the repository using read only methods to fetch information like branch "
+"name, last commit and status."
+msgstr ""
+
+#: git-status.php:413
+msgid "Admin Bar Item"
+msgstr ""
+
+#: git-status.php:414
+msgid ""
+"When directed to a git repository via the \"Git Repository Location\" "
+"setting the plugin will add a new admin bar item with the git icon."
+msgstr ""
+
+#: git-status.php:415
+msgid "Next to the icon you can see the branch name currently checked out."
+msgstr ""
+
+#: git-status.php:416
+msgid ""
+"Take note of the background color of this item. When the background is red "
+"it means your local repository is out of sync with git."
+msgstr ""
+
+#: git-status.php:423
+msgid "Settings"
+msgstr ""
+
+#: git-status.php:424
+msgid "The plugin only has one setting, and that's the repository location."
+msgstr ""
+
+#: git-status.php:425
+msgid "From this its able to perform all of its other functions."
+msgstr ""
+
+#: git-status.php:426
+msgid ""
+"The repository location is most likely to be your wp-content folder, or the "
+"root folder of the install."
+msgstr ""
+
+#: git-status.php:429
+#. translators: Blog post link
+msgid "Checkout our blog on %s for some of the common approaches."
+msgstr ""
+
+#: git-status.php:430
+msgid "WordPress Source Control Strategies"
+msgstr ""
+
+#: git-status.php:433
+msgid ""
+"However it can be anything suitable for your use case. It doesn't even have "
+"to be WordPress, you could use it to be aware of any git repository on the "
+"local filesystem (that the php process user as access to)."
+msgstr ""
+
+#: git-status.php:440
+msgid "About"
+msgstr ""
+
+#: git-status.php:442
+msgid ""
+"Git Status is a complimentary plugin for Git Source Controlled websites, "
+"provided by WP Git Updater."
+msgstr ""
+
+#: git-status.php:443
+msgid ""
+"WP Git Updater provides an automated plugin and theme update service for "
+"git source controlled WordPress sites."
+msgstr ""
+
+#: git-status.php:444
+msgid ""
+"Use of Git status does not require an active subscription to the WP Git "
+"Updater service. However we would super greatful if you tried out our 10 "
+"day free trial."
+msgstr ""
+
+#: git-status.php:447
+#. translators: About us link
+msgid "Visit %s for more information."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "WP Git Updater"
+msgstr ""
+
+#: git-status.php:455
+msgid "For more information:"
+msgstr ""
+
+#: git-status.php:457
+msgid "Documentation"
+msgstr ""
+
+#: git-status.php:458
+msgid "Support"
+msgstr ""
+
 #. Plugin URI of the plugin/theme
-msgid "https://wpgitupdater.dev/docs/latest/plugins"
+msgid "https://wpgitupdater.dev/docs/latest/plugins#git-status"
 msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
 "A simple WordPress plugin to display your current git branch and status in "
 "the admin area."
-msgstr ""
-
-#. Author of the plugin/theme
-msgid "WP Git Updater"
 msgstr ""
 
 #. Author URI of the plugin/theme

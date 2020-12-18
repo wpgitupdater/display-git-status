@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "homepage": "https://wpgitupdater.dev/docs/latest/plugins",
   "bugs": {
-    "url": "https://github.com/wpgitupdater/git-status"
+    "url": "https://github.com/wpgitupdater/git-status/issues"
   },
   "license": "GPL-2.0-or-later",
   "main": "Gruntfile.js",

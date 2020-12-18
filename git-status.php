@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Git Status
  * Version: 1.0.0
- * Plugin URI: https://wpgitupdater.dev/docs/latest/plugins
+ * Plugin URI: https://wpgitupdater.dev/docs/latest/plugins#git-status
  * Author: WP Git Updater
  * Author URI: https://wpgitupdater.dev
  * Description: A simple WordPress plugin to display your current git branch and status in the admin area.
@@ -34,13 +34,43 @@ if ( ! is_admin() ) {
 	return;
 }
 
+define( 'GIT_STATUS_VERSION', '1.0.0' );
+define(
+	'GIT_STATUS_WP_GIT_UPDATER_LOGO_SVG',
+	'<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 544.1 85" xml:space="preserve" style="max-height: 100%;width: auto;">
+		<g>
+			<defs>
+				<rect id="SVGID_1_" y="0" width="91.3" height="85"></rect>
+			</defs>
+			<clipPath id="SVGID_2_">
+				<use xlink:href="#SVGID_1_" style="overflow: visible;"></use>
+			</clipPath>
+			<path d="M46.4,79.5c20.4,0,37-16.5,37.1-36.9c0-20.4-16.5-37-36.9-37.1 C26.1,5.5,9.5,22,9.5,42.5C9.5,62.9,26,79.5,46.4,79.5" style="clip-path: url(\'#SVGID_2_\'); fill: rgb(16, 116, 168);"></path>
+			<path d="M46.5,22.2c-8.9,0-17.1,6-19.6,15 C24,48,30.4,59.2,41.2,62.1s21.9-3.5,24.8-14.3c1.2-4.3,0.8-8.6-0.6-12.5" style="clip-path: url(\'#SVGID_2_\'); fill: none; stroke: rgb(255, 255, 255); stroke-width: 2.52;"></path>
+			<polygon points="51.3,22.2 44.2,15.6 44.2,28.9 	" style="clip-path: url(\'#SVGID_2_\'); fill: rgb(255, 255, 255);"></polygon>
+			<path d="M68.9,35.5c3-3,3-7.8,0-10.7c-3-3-7.8-3-10.7,0c-3,3-3,7.8,0,10.7 C61.1,38.4,65.9,38.4,68.9,35.5" style="clip-path: url(\'#SVGID_2_\'); fill: rgb(240, 79, 50);"></path>
+			<path d="M68.9,35.5c3-3,3-7.8,0-10.7 c-3-3-7.8-3-10.7,0c-3,3-3,7.8,0,10.7C61.1,38.4,65.9,38.4,68.9,35.5z" style="clip-path: url(\'#SVGID_2_\'); fill: none; stroke: rgb(255, 255, 255); stroke-width: 2.52;"></path>
+		</g>
+		<polygon points="43,30.4 51.2,22.2 43,14 " style="fill: rgb(255, 255, 255);"></polygon>
+		<path d="M268.4,31.4v-9H238v9h10.1v32.2h10.1V31.4H268.4z M232,22.3h-10.1v41.3H232V22.3z M214.9,45.6v-5.7 h-16.2v8.5h6.1v0.6c0,1.6-0.4,3.2-1.6,4.4c-0.9,1-2.4,1.6-4.5,1.6c-1.9,0-3.2-0.8-4-1.7c-0.9-1.2-1.5-2.7-1.5-10.2s0.6-8.9,1.5-10.2 c0.8-1,2.1-1.8,4-1.8c3.5,0,5.1,1.5,5.9,4.6h10.2c-1-6.8-5.5-13.7-16.1-13.7c-5,0-8.5,1.6-11.5,4.6c-4.4,4.4-4.2,10.2-4.2,16.4 s-0.2,12,4.2,16.4c3,3,6.7,4.6,11.5,4.6c4.5,0,8.5-1,12-4.6C213.8,56.1,214.9,52.2,214.9,45.6" style="fill: rgb(240, 79, 50);"></path>
+		<path d="M168.3,35.6c0,2.1-1.6,4.2-4.4,4.2h-5.7v-8.4h5.7C166.7,31.4,168.3,33.4,168.3,35.6 M178.4,35.6 c0-6.8-4.9-13.3-14.1-13.3H148v41.3h10.2V48.9h6.2C173.5,48.9,178.4,42.4,178.4,35.6 M143.8,22.3h-10.6l-5.4,21.8l-6.7-21.8H114 l-6.7,21.8l-5.4-21.8H91.3l11.4,41.3h8.2l6.7-20.4l6.7,20.4h8.3L143.8,22.3z" style="fill: rgb(16, 116, 168);"></path>
+		<path d="M523.7,35c0,3.2-2.3,5.4-5.8,5.4h-7.5V29.6h7.5C521.4,29.6,523.7,31.8,523.7,35 M533.4,63.4 l-9.1-17.7c4-1.4,7.5-5,7.5-10.8c0-6.8-4.9-12.5-13.3-12.5h-16v41h8V47.1h5.8l8,16.3H533.4z M492.7,63.4v-7.1h-19v-10h16.2v-7.1 h-16.2v-9.6h19v-7.1h-27v41H492.7z M457.4,29.6v-7.1H428v7.1h10.7v33.8h8V29.6H457.4z M414.7,49.4h-10.2l5.2-14.9L414.7,49.4z M427.6,63.4l-15-41h-6.3l-14.9,41h8.3l2.5-7.2h14.6l2.4,7.2H427.6z M378.5,42.8c0,6.2-0.2,9.1-1.7,11c-1.4,1.7-3.2,2.5-6,2.5h-6 V29.6h6c2.8,0,4.6,0.9,6,2.5C378.3,34,378.5,36.5,378.5,42.8 M386.5,42.8c0-6.2,0.5-11.8-4.1-16.4c-2.7-2.7-6.6-3.9-10.8-3.9h-14.8 v41h14.8c4.3,0,8.1-1.2,10.8-3.9C386.9,54.9,386.5,48.9,386.5,42.8 M340.2,35.2c0,3.3-2.3,5.6-5.9,5.6h-7.5V29.6h7.5 C337.9,29.6,340.2,31.9,340.2,35.2 M348.2,35.2c0-7-5.1-12.8-13.5-12.8h-15.9v41h8V48h7.9C343.1,48,348.2,42.2,348.2,35.2 M308,49.4 V22.5H300v26.6c0,4.7-2.8,7.5-7.1,7.5c-4.3,0-7.1-2.8-7.1-7.5V22.5h-8v26.9c0,8.7,6.7,14.4,15.1,14.4C301.3,63.8,308,58.1,308,49.4" style="fill: rgb(178, 178, 178);"></path>
+	</svg>'
+);
+
 register_activation_hook( __FILE__, 'get_status_install_hook' );
 /**
  * Sets default option values if none are present.
  */
 function get_status_install_hook() {
 	if ( ! get_option( 'git_status_options' ) ) {
-		update_option( 'git_status_options', array( 'git_directory' => rtrim( WP_CONTENT_DIR, '/' ) ) );
+		update_option(
+			'git_status_options',
+			array(
+				'git_directory' => rtrim( WP_CONTENT_DIR, '/' ),
+				'version' => GIT_STATUS_VERSION
+			)
+		);
 	}
 }
 
@@ -195,7 +225,8 @@ add_action( 'admin_menu', 'git_status_add_pages' );
  * Adds the Git Status Tools menu page.
  */
 function git_status_add_pages() {
-	add_management_page( __( 'Git Status', 'git-status' ), __( 'Git Status', 'git-status' ), 'manage_options', 'git-status', 'git_status_page' );
+	$page = add_management_page( __( 'Git Status', 'git-status' ), __( 'Git Status', 'git-status' ), 'manage_options', 'git-status', 'git_status_page' );
+	add_action( 'load-' . $page, 'git_status_help' );
 }
 
 /**
@@ -264,26 +295,7 @@ function git_status_page() {
 		</form>
 		<div class="author-credit">
 			<?php
-			$svg = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 544.1 85" xml:space="preserve">
-				<g>
-					<defs>
-						<rect id="SVGID_1_" y="0" width="91.3" height="85"></rect>
-					</defs>
-					<clipPath id="SVGID_2_">
-						<use xlink:href="#SVGID_1_" style="overflow: visible;"></use>
-					</clipPath>
-					<path d="M46.4,79.5c20.4,0,37-16.5,37.1-36.9c0-20.4-16.5-37-36.9-37.1 C26.1,5.5,9.5,22,9.5,42.5C9.5,62.9,26,79.5,46.4,79.5" style="clip-path: url(\'#SVGID_2_\'); fill: rgb(16, 116, 168);"></path>
-					<path d="M46.5,22.2c-8.9,0-17.1,6-19.6,15 C24,48,30.4,59.2,41.2,62.1s21.9-3.5,24.8-14.3c1.2-4.3,0.8-8.6-0.6-12.5" style="clip-path: url(\'#SVGID_2_\'); fill: none; stroke: rgb(255, 255, 255); stroke-width: 2.52;"></path>
-					<polygon points="51.3,22.2 44.2,15.6 44.2,28.9 	" style="clip-path: url(\'#SVGID_2_\'); fill: rgb(255, 255, 255);"></polygon>
-					<path d="M68.9,35.5c3-3,3-7.8,0-10.7c-3-3-7.8-3-10.7,0c-3,3-3,7.8,0,10.7 C61.1,38.4,65.9,38.4,68.9,35.5" style="clip-path: url(\'#SVGID_2_\'); fill: rgb(240, 79, 50);"></path>
-					<path d="M68.9,35.5c3-3,3-7.8,0-10.7 c-3-3-7.8-3-10.7,0c-3,3-3,7.8,0,10.7C61.1,38.4,65.9,38.4,68.9,35.5z" style="clip-path: url(\'#SVGID_2_\'); fill: none; stroke: rgb(255, 255, 255); stroke-width: 2.52;"></path>
-				</g>
-				<polygon points="43,30.4 51.2,22.2 43,14 " style="fill: rgb(255, 255, 255);"></polygon>
-				<path d="M268.4,31.4v-9H238v9h10.1v32.2h10.1V31.4H268.4z M232,22.3h-10.1v41.3H232V22.3z M214.9,45.6v-5.7 h-16.2v8.5h6.1v0.6c0,1.6-0.4,3.2-1.6,4.4c-0.9,1-2.4,1.6-4.5,1.6c-1.9,0-3.2-0.8-4-1.7c-0.9-1.2-1.5-2.7-1.5-10.2s0.6-8.9,1.5-10.2 c0.8-1,2.1-1.8,4-1.8c3.5,0,5.1,1.5,5.9,4.6h10.2c-1-6.8-5.5-13.7-16.1-13.7c-5,0-8.5,1.6-11.5,4.6c-4.4,4.4-4.2,10.2-4.2,16.4 s-0.2,12,4.2,16.4c3,3,6.7,4.6,11.5,4.6c4.5,0,8.5-1,12-4.6C213.8,56.1,214.9,52.2,214.9,45.6" style="fill: rgb(240, 79, 50);"></path>
-				<path d="M168.3,35.6c0,2.1-1.6,4.2-4.4,4.2h-5.7v-8.4h5.7C166.7,31.4,168.3,33.4,168.3,35.6 M178.4,35.6 c0-6.8-4.9-13.3-14.1-13.3H148v41.3h10.2V48.9h6.2C173.5,48.9,178.4,42.4,178.4,35.6 M143.8,22.3h-10.6l-5.4,21.8l-6.7-21.8H114 l-6.7,21.8l-5.4-21.8H91.3l11.4,41.3h8.2l6.7-20.4l6.7,20.4h8.3L143.8,22.3z" style="fill: rgb(16, 116, 168);"></path>
-				<path d="M523.7,35c0,3.2-2.3,5.4-5.8,5.4h-7.5V29.6h7.5C521.4,29.6,523.7,31.8,523.7,35 M533.4,63.4 l-9.1-17.7c4-1.4,7.5-5,7.5-10.8c0-6.8-4.9-12.5-13.3-12.5h-16v41h8V47.1h5.8l8,16.3H533.4z M492.7,63.4v-7.1h-19v-10h16.2v-7.1 h-16.2v-9.6h19v-7.1h-27v41H492.7z M457.4,29.6v-7.1H428v7.1h10.7v33.8h8V29.6H457.4z M414.7,49.4h-10.2l5.2-14.9L414.7,49.4z M427.6,63.4l-15-41h-6.3l-14.9,41h8.3l2.5-7.2h14.6l2.4,7.2H427.6z M378.5,42.8c0,6.2-0.2,9.1-1.7,11c-1.4,1.7-3.2,2.5-6,2.5h-6 V29.6h6c2.8,0,4.6,0.9,6,2.5C378.3,34,378.5,36.5,378.5,42.8 M386.5,42.8c0-6.2,0.5-11.8-4.1-16.4c-2.7-2.7-6.6-3.9-10.8-3.9h-14.8 v41h14.8c4.3,0,8.1-1.2,10.8-3.9C386.9,54.9,386.5,48.9,386.5,42.8 M340.2,35.2c0,3.3-2.3,5.6-5.9,5.6h-7.5V29.6h7.5 C337.9,29.6,340.2,31.9,340.2,35.2 M348.2,35.2c0-7-5.1-12.8-13.5-12.8h-15.9v41h8V48h7.9C343.1,48,348.2,42.2,348.2,35.2 M308,49.4 V22.5H300v26.6c0,4.7-2.8,7.5-7.1,7.5c-4.3,0-7.1-2.8-7.1-7.5V22.5h-8v26.9c0,8.7,6.7,14.4,15.1,14.4C301.3,63.8,308,58.1,308,49.4" style="fill: rgb(178, 178, 178);"></path>
-			</svg>';
-			$author_link = '<a href="https://wpgitupdater.dev" target="_blank" title="WP Git Updater">' . $svg . '</a>';
+			$author_link = '<a href="https://wpgitupdater.dev" target="_blank" title="WP Git Updater">' . GIT_STATUS_WP_GIT_UPDATER_LOGO_SVG . '</a>';
 			echo sprintf(
 				'<span>%s</span>%s<span>%s</span>',
 				/* translators: Author credit */
@@ -340,6 +352,7 @@ function git_status_register_settings() {
  */
 function git_status_sanitize_options( $options ) {
 	$options['git_directory'] = esc_attr( rtrim( $options['git_directory'], '/' ) );
+	$options['version'] = GIT_STATUS_VERSION;
 	add_settings_error( 'git_status_options', 'git_status_setting_git_directory', __( 'Settings Saved', 'git-status' ), 'success' );
 	return $options;
 }
@@ -377,4 +390,71 @@ function git_status_setting_git_status() {
  */
 function git_status_setting_git_commit() {
 	echo '<textarea id="git_status_setting_git_commit" class="large-text code" rows="10" cols="50" disabled readonly>' . esc_attr( git_status_get_last_commit() ) . '</textarea>';
+}
+
+/**
+ * Add help content to the git status page
+ */
+function git_status_help() {
+	$screen = get_current_screen();
+
+	$screen->add_help_tab(
+		array(
+			'id'    => 'introduction',
+			'title' => __( 'Introduction', 'git-status' ),
+			'content'   => '<p>' . __( 'Git Status is a pretty simple plugin, all it needs is access to the shell_exec function and to be pointed at a git repository.', 'git-status' ) . '</p>' .
+				'<p>' . __( 'The plugin will not perform any state altering operations, it will access the repository using read only methods to fetch information like branch name, last commit and status.', 'git-status' ) . '</p>',
+		)
+	);
+
+	$screen->add_help_tab(
+		array(
+			'id'    => 'admin-bar',
+			'title' => __( 'Admin Bar Item', 'git-status' ),
+			'content'   => '<p>' . __( 'When directed to a git repository via the "Git Repository Location" setting the plugin will add a new admin bar item with the git icon.', 'git-status' ) . '</p>' .
+				'<p>' . __( 'Next to the icon you can see the branch name currently checked out.', 'git-status' ) . '</p>' .
+				'<p>' . __( 'Take note of the background color of this item. When the background is red it means your local repository is out of sync with git.', 'git-status' ) . '</p>',
+		)
+	);
+
+	$screen->add_help_tab(
+		array(
+			'id'    => 'settings',
+			'title' => __( 'Settings', 'git-status' ),
+			'content'   => '<p>' . __( 'The plugin only has one setting, and that\'s the repository location.', 'git-status' ) . '</p>' .
+				'<p>' . __( 'From this its able to perform all of its other functions.', 'git-status' ) . '</p>' .
+				'<p>' . __( 'The repository location is most likely to be your wp-content folder, or the root folder of the install.', 'git-status' ) . '</p>' .
+				'<p>' . sprintf(
+						/* translators: Blog post link */
+					__( 'Checkout our blog on %s for some of the common approaches.', 'git-status' ),
+					'<a href="https://wpgitupdater.dev/blog/a-look-at-word-press-source-control-strategies" target="_blank">' . __( 'WordPress Source Control Strategies', 'git-status' ) . '</a>'
+				) .
+				'</p>' .
+				'<p>' . __( 'However it can be anything suitable for your use case. It doesn\'t even have to be WordPress, you could use it to be aware of any git repository on the local filesystem (that the php process user as access to).', 'git-status' ) . '</p>',
+		)
+	);
+
+	$screen->add_help_tab(
+		array(
+			'id'    => 'about',
+			'title' => __( 'About', 'git-status' ),
+			'content'   => '<div style="height: 40px;margin-top: 20px;">' . GIT_STATUS_WP_GIT_UPDATER_LOGO_SVG . '</div>' .
+				'<p>' . __( 'Git Status is a complimentary plugin for Git Source Controlled websites, provided by WP Git Updater.', 'git-status' ) . '</p>' .
+				'<p>' . __( 'WP Git Updater provides an automated plugin and theme update service for git source controlled WordPress sites.', 'git-status' ) . '</p>' .
+				'<p>' . __( 'Use of Git status does not require an active subscription to the WP Git Updater service. However we would super greatful if you tried out our 10 day free trial.', 'git-status' ) . '</p>' .
+				'<p>' . sprintf(
+					/* translators: About us link */
+					__( 'Visit %s for more information.', 'git-status' ),
+					'<a href="https://wpgitupdater.dev" target="_blank">' . __( 'WP Git Updater', 'git-status' ) . '</a>'
+				) .
+				'</p>',
+		)
+	);
+
+	$screen->set_help_sidebar(
+		'<p>' . __( 'For more information:', 'git-status' ) . '</p>' .
+		'<p><a href="https://wpgitupdater.dev" target="_blank">' . __( 'WP Git Updater', 'git-status' ) . '</a></p>' .
+		'<p><a href="https://wpgitupdater.dev/docs/latest/plugins#git-status" target="_blank">' . __( 'Documentation', 'git-status' ) . '</a></p>' .
+		'<p><a href="https://wordpress.org/support/plugin/git-status/" target="_blank">' . __( 'Support', 'git-status' ) . '</a></p>'
+	);
 }
