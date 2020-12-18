@@ -171,6 +171,9 @@ function git_status_page() {
 				height: 30px;
 				margin-bottom: -6px;
 			}
+			.button[data-repository-directory] {
+				margin-left: 6px;
+			}
 		</style>
 		<h1 class="page-title">
 			<img src="<?php echo esc_attr( plugins_url( 'assets/git.svg', __FILE__ ) ); ?>" alt="<?php esc_attr_e( 'Git Icon', 'git-status' ); ?>" />
@@ -184,6 +187,18 @@ function git_status_page() {
 			?>
 			<input name="submit" class="button button-primary" type="submit" value="<?php esc_attr_e( 'Save Settings', 'git-status' ); ?>" />
 		</form>
+		<script>
+			(function() {
+				var repoSetters = document.querySelectorAll('[data-repository-directory]');
+				console.log('setters', repoSetters);
+				repoSetters.forEach(function(setter) {
+					setter.addEventListener('click', function (event) {
+						event.preventDefault();
+						document.getElementById('git_status_setting_git_directory').value = this.dataset.repositoryDirectory;
+					});
+				});
+			})();
+		</script>
 	</div>
 	<?php
 }
@@ -228,5 +243,7 @@ function git_status_git_section_text() { }
 function git_status_setting_git_directory() {
 	$options = get_option( 'git_status_options' );
 	echo '<input id="git_status_setting_git_directory" class="regular-text code" name="git_status_options[git_directory]" type="text" value="' . esc_attr( $options['git_directory'] ) . '" />';
+	echo '<a href="#" class="button" data-repository-directory="' . esc_attr( rtrim( WP_CONTENT_DIR, '/' ) ) . '">' . esc_attr( 'Set to wp-content', 'git-status' ) . '</a>';
+	echo '<a href="#" class="button" data-repository-directory="' . esc_attr( rtrim( ABSPATH, '/' ) ) . '">' . esc_attr( 'Set to root', 'git-status' ) . '</a>';
 	echo '<p class="description">' . esc_attr( 'Enter the full path to your sites git repository.', 'git-status' ) . '</p>';
 }
