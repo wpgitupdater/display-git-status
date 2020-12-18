@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Git Status 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/git-status\n"
-"POT-Creation-Date: 2020-12-18 11:49:18+00:00\n"
+"POT-Creation-Date: 2020-12-18 12:39:42+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -34,7 +34,7 @@ msgstr ""
 msgid "You are currently on the %s branch, but there are uncommitted changes!"
 msgstr ""
 
-#: git-status.php:141 git-status.php:179
+#: git-status.php:141 git-status.php:203
 msgid "Git Icon"
 msgstr ""
 
@@ -48,19 +48,29 @@ msgid ""
 "be hidden from view."
 msgstr ""
 
-#: git-status.php:188
+#: git-status.php:212
 msgid "Save Settings"
 msgstr ""
 
-#: git-status.php:219
+#: git-status.php:239
+#. translators: Author credit
+msgid "Git status is brought to you by "
+msgstr ""
+
+#: git-status.php:243
+#. translators: Author credit tagline
+msgid "Automated Source Controlled WordPress Updates."
+msgstr ""
+
+#: git-status.php:276
 msgid "Git Settings"
 msgstr ""
 
-#: git-status.php:220
+#: git-status.php:277
 msgid "Git Repository Location"
 msgstr ""
 
-#: git-status.php:231
+#: git-status.php:288
 msgid "Settings Saved"
 msgstr ""
 
