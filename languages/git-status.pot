@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Git Status 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/git-status\n"
-"POT-Creation-Date: 2020-12-17 23:43:38+00:00\n"
+"POT-Creation-Date: 2020-12-18 00:02:54+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,13 +24,18 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
-#: git-status.php:62
-msgid "Git Icon"
-msgstr ""
-
-#: git-status.php:67
+#: git-status.php:95
 #. translators: Asserting the current git branch
 msgid "You are currently on the %s branch"
+msgstr ""
+
+#: git-status.php:103
+#. translators: Asserting the current git branch
+msgid "You are currently on the %s branch, but there are uncommitted changes!"
+msgstr ""
+
+#: git-status.php:113
+msgid "Git Icon"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
