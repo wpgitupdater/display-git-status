@@ -1,9 +1,9 @@
 {
-  "name": "git-status",
+  "name": "display-git-status",
   "version": "1.0.0",
-  "homepage": "https://wpgitupdater.dev/docs/latest/plugins",
+  "homepage": "https://wpgitupdater.dev/docs/latest/plugins#display-git-status",
   "bugs": {
-    "url": "https://github.com/wpgitupdater/git-status/issues"
+    "url": "https://github.com/wpgitupdater/display-git-status/issues"
   },
   "license": "GPL-2.0-or-later",
   "main": "Gruntfile.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wpgitupdater/git-status.git"
+    "url": "https://github.com/wpgitupdater/display-git-status.git"
   },
   "scripts": {
     "start": "grunt default",

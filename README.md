@@ -1,4 +1,4 @@
-# Git Status #
+# Display Git Status #
 **Contributors:** wpgitupdater  
 **Tags:** git  
 **Requires at least:** 5.0  
@@ -12,7 +12,7 @@ A simple WordPress plugin to display your current git branch and status in the a
 
 ## Description ##
 
-Git Status is a pretty simple plugin, all it needs is access to the `shell_exec` function and to be pointed at a git repository.
+Display Git Status is a pretty simple plugin, all it needs is access to the `shell_exec` function and to be pointed at a git repository.
 
 The plugin will not perform any state altering operations, it accesses the repository using read only methods to fetch information like branch name, last commit and status.
 
@@ -43,14 +43,14 @@ Anyone with the `manage_options` permissions can see/edit the git status admin p
 
 ## Screenshots ##
 
-### 1. Git Status settings page, here you can set the repository location, additionally the git status and last commit information. ###
-![Git Status settings page, here you can set the repository location, additionally the git status and last commit information.](http://ps.w.org/git-status/assets/screenshot-1.png)
+### 1. Display Git Status settings page, here you can set the repository location, additionally the git status and last commit information. ###
+![Display Git Status settings page, here you can set the repository location, additionally the git status and last commit information.](http://ps.w.org/display-git-status/assets/screenshot-1.png)
 
 ### 2. When your site and repository and are in sync you can see the branch name in the admin bar. ###
-![When your site and repository and are in sync you can see the branch name in the admin bar.](http://ps.w.org/git-status/assets/screenshot-2.png)
+![When your site and repository and are in sync you can see the branch name in the admin bar.](http://ps.w.org/display-git-status/assets/screenshot-2.png)
 
 ### 3. And when your site and repository are divergent the admin bar items background changes to red, alerting you of a problem. ###
-![And when your site and repository are divergent the admin bar items background changes to red, alerting you of a problem.](http://ps.w.org/git-status/assets/screenshot-3.png)
+![And when your site and repository are divergent the admin bar items background changes to red, alerting you of a problem.](http://ps.w.org/display-git-status/assets/screenshot-3.png)
 
 
 ## Changelog ##

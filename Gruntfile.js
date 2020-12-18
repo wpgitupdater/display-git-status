@@ -9,7 +9,7 @@ module.exports = function( grunt ) {
 
 		addtextdomain: {
 			options: {
-				textdomain: 'git-status',
+				textdomain: 'display-git-status',
 			},
 			update_all_domains: {
 				options: {
@@ -32,8 +32,8 @@ module.exports = function( grunt ) {
 				options: {
 					domainPath: '/languages',
 					exclude: [ '\.git/*', 'bin/*', 'node_modules/*', 'tests/*' ],
-					mainFile: 'git-status.php',
-					potFilename: 'git-status.pot',
+					mainFile: 'display-git-status.php',
+					potFilename: 'display-git-status.pot',
 					potHeaders: {
 						poedit: true,
 						'x-poedit-keywordslist': true
