@@ -68,10 +68,24 @@ function get_status_install_hook() {
 			'git_status_options',
 			array(
 				'git_directory' => rtrim( WP_CONTENT_DIR, '/' ),
-				'version' => GIT_STATUS_VERSION
+				'version' => GIT_STATUS_VERSION,
 			)
 		);
 	}
+}
+
+add_action( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'git_status_action_links' );
+/**
+ * Prepend the settings page link to the plugin links.
+ *
+ * @param array $links Existing links.
+ * @return array Links including settings page
+ */
+function git_status_action_links( $links ) {
+	return array_merge(
+		array( '<a href="' . admin_url( 'tools.php?page=git-status' ) . '">' . __( 'Settings', 'git-status' ) . '</a>' ),
+		$links
+	);
 }
 
 /**
@@ -211,7 +225,7 @@ function git_status_add_branch_link( WP_Admin_Bar $admin_bar ) {
 			'parent' => null,
 			'group'  => null,
 			'title' => '<img src="' . $img . '" alt="' . __( 'Git Icon', 'git-status' ) . '" class="ab-icon" />' . $branch,
-			'href'  => admin_url( 'admin.php?page=git-status' ),
+			'href'  => admin_url( 'tools.php?page=git-status' ),
 			'meta' => array(
 				'title' => $title,
 				'class' => $class_names,
@@ -307,10 +321,9 @@ function git_status_page() {
 			);
 			?>
 		</div>
-		<script>
+		<script type="text/javascript">
 			(function() {
 				var repoSetters = document.querySelectorAll('[data-repository-directory]');
-				console.log('setters', repoSetters);
 				repoSetters.forEach(function(setter) {
 					setter.addEventListener('click', function (event) {
 						event.preventDefault();
