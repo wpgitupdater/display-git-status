@@ -197,7 +197,7 @@ function dgs_add_branch_link( WP_Admin_Bar $admin_bar ) {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
-	$branch = dgs_get_branch_name();
+	$branch = esc_html(dgs_get_branch_name());
 	if ( '' === $branch ) {
 		return;
 	}
