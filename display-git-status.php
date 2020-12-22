@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Display Display Git Status
- * Version: 1.0.0
+ * Version: 1.0.1
  * Plugin URI: https://wpgitupdater.dev/docs/latest/plugins#display-display-git-status
  * Author: WP Git Updater
  * Author URI: https://wpgitupdater.dev
@@ -34,7 +34,7 @@ if ( ! is_admin() ) {
 	return;
 }
 
-define( 'DISPLAY_GIT_STATUS_VERSION', '1.0.0' );
+define( 'DISPLAY_GIT_STATUS_VERSION', '1.0.1' );
 define(
 	'DISPLAY_GIT_STATUS_WP_GIT_UPDATER_LOGO_SVG',
 	'<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 544.1 85" xml:space="preserve" style="max-height: 100%;width: auto;">

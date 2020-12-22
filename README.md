@@ -3,7 +3,7 @@
 **Tags:** git  
 **Requires at least:** 5.0  
 **Tested up to:** 5.6  
-**Stable tag:** 1.0.0  
+**Stable tag:** 1.0.1  
 **Requires PHP:** 7.2  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
@@ -54,6 +54,9 @@ Anyone with the `manage_options` permissions can see/edit the git status admin p
 
 
 ## Changelog ##
+
+### 1.0.1 ###
+* Fix Command and XXS inject, props to @xrzhev
 
 ### 1.0.0 ###
 * Initial Release
