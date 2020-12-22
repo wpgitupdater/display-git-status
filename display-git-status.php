@@ -122,7 +122,7 @@ function dgs_get_branch_name() {
 	if ( ! dgs_is_shell_exec_available() ) {
 		return '';
 	}
-	return trim( shell_exec( 'cd ' . dgs_get_repository_location() . ' && git rev-parse --abbrev-ref HEAD' ) );
+	return trim( shell_exec( escapeshellcmd( 'cd ' . dgs_get_repository_location() . ' && git rev-parse --abbrev-ref HEAD' ) ) );
 }
 
 /**
@@ -134,7 +134,7 @@ function dgs_is_up_to_date() {
 	if ( ! dgs_is_shell_exec_available() ) {
 		return true;
 	}
-	$status = trim( shell_exec( 'cd ' . dgs_get_repository_location() . ' && git status --porcelain=v1' ) );
+	$status = trim( shell_exec( escapeshellcmd( 'cd ' . dgs_get_repository_location() . ' && git status --porcelain=v1' ) ) );
 	if ( '' === $status ) {
 		return true;
 	}
@@ -151,7 +151,7 @@ function dgs_get_status() {
 	if ( ! dgs_is_shell_exec_available() ) {
 		return '';
 	}
-	return trim( shell_exec( 'cd ' . dgs_get_repository_location() . ' && git status' ) );
+	return trim( shell_exec( escapeshellcmd( 'cd ' . dgs_get_repository_location() . ' && git status' ) ) );
 }
 
 /**
@@ -163,7 +163,7 @@ function dgs_get_last_commit() {
 	if ( ! dgs_is_shell_exec_available() ) {
 		return '';
 	}
-	return trim( shell_exec( 'cd ' . dgs_get_repository_location() . ' && git show --name-status' ) );
+	return trim( shell_exec( escapeshellcmd( 'cd ' . dgs_get_repository_location() . ' && git show --name-status' ) ) );
 }
 
 add_action( 'admin_head', 'dgs_admin_css' );
